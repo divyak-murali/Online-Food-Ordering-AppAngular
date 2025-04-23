@@ -9,8 +9,24 @@
             <span class="favourite {{food.favourite?'':'not'}}">
                 ❤
             </span>
-            <div class="star">
+            <div class="star-rating">
                 <!-- <star-rating></star-rating> -->
+                 <span  *ngFor="let star of stars; let i=index"
+                 [class.filled]="i <(+food.stars)">&#9733;</span>
+            </div>
+            <div class="product-item-footer">
+                <div class="origins">
+                    <span *ngFor="let origin of food.origins">
+                        {{origin}}
+                    </span>
+                </div>
+                <div class="cook-time">
+                    <span>🕒</span>
+                    {{food.cookTime}}
+                </div>
+                <div class="price">
+                    <span>$ {{food.price}}</span>
+                </div>
             </div>
         </div>
     </a>
