@@ -1,12 +1,11 @@
-import { Component, NgModule } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./components/partials/header/header.component";
-import { HomeComponent } from "./components/pages/home/home.component";
-import { RatingComponent } from 'ng-starrating/lib/rating.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderComponent,HomeComponent],
+  imports: [HeaderComponent,RouterModule,CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
