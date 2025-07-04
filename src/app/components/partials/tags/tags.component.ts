@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tags',
+  standalone:true,
   imports: [CommonModule],
   templateUrl: './tags.component.html',
   styleUrl: './tags.component.css',
@@ -13,6 +14,8 @@ import { CommonModule } from '@angular/common';
 export class TagsComponent {
   tags?: Tag[];
   constructor(foodService: FoodService) {
-    this.tags = foodService.getAllTags();
+  foodService.getAllTags().subscribe((serverTags)=>{
+    this.tags=serverTags
+  });
   }
 }

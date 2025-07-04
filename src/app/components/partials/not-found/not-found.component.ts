@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-not-found',
   imports: [CommonModule],
+  standalone:true,
   templateUrl: './not-found.component.html',
   styleUrl: './not-found.component.css'
 })

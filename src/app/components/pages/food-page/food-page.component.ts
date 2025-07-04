@@ -4,10 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FoodService } from '../../../services/food.service';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../../services/cart.service';
+import { NotFoundComponent } from "../../partials/not-found/not-found.component";
 
 @Component({
   selector: 'app-food-page',
-  imports: [CommonModule],
+  imports: [CommonModule, NotFoundComponent],
+  standalone:true,
   templateUrl: './food-page.component.html',
   styleUrl: './food-page.component.css'
 })
@@ -18,7 +20,8 @@ constructor(activatedRoute:ActivatedRoute,foodService:FoodService,private cartSe
 ){
 activatedRoute.params.subscribe((params)=>{
   if(params.id)
-    this.food=foodService.getFoodById(params.id);
+    foodService.getFoodById(params.id).subscribe((serverFood)=>{
+  this.food=serverFood});
 })
 }
 stars=[1,2,3,4,5];

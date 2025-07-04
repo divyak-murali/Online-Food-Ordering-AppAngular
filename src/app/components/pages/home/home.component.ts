@@ -5,24 +5,31 @@ import { NgFor } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { SearchComponent } from "../../partials/search/search.component";
 import { TagsComponent } from '../../partials/tags/tags.component';
+import { NotFoundComponent } from "../../partials/not-found/not-found.component";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  imports: [NgFor, SearchComponent,TagsComponent],
+  standalone:true,
+  imports: [NgFor, SearchComponent, TagsComponent, NotFoundComponent],
 
 })
 export class HomeComponent implements OnInit {
   foods: Food[] = [];
   constructor(private foodService: FoodService,activatedRoute:ActivatedRoute) {
+    let foodObservable:Observable<Food[]>;
     activatedRoute.params.subscribe((params)=>{
       if(params.searchTerm)
-        this.foods=this.foodService.getAllFoodBySearchedItem(params.searchTerm)
+        foodObservable=this.foodService.getAllFoodBySearchedItem(params.searchTerm)
       else if(params.tag)
-        this.foods=this.foodService.getAllFoodByTags(params.tag);
+        foodObservable=this.foodService.getAllFoodByTags(params.tag);
       else
-      this.foods = foodService.getAll();
+      foodObservable = foodService.getAll();
+    foodObservable.subscribe((serverFood)=>{
+      this.foods=serverFood
+    })
 
     })
   }
