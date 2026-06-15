@@ -1,7 +1,14 @@
 # Frontend
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
+This project was developed as a learning project to gain hands-on experience with full-stack web development using Angular and Node.js. The implementation was inspired by online educational resources and further explored through personal experimentation and customization.
 
+Technologies
+Angular
+Node.js
+Express.js
+HTML
+CSS
 ## Development server
 
 To start a local development server, run:
